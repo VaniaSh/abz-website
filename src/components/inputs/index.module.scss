@@ -12,6 +12,7 @@
   position: relative;
   width: 100%;
 
+
   .label {
     width: auto;
     font-weight: normal;
@@ -32,6 +33,7 @@
   }
 
   .input {
+    border-radius: 4px;
     width: 100%;
     border: 1px solid #D0CFCF;
     background-color: transparent;
