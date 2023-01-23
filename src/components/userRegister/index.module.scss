@@ -1,0 +1,25 @@
+.userRegisterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .title {
+    margin: 140px 0 50px 0
+  }
+
+  .formContainer {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 0 auto;
+
+    .radioGroup {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+  }
+}

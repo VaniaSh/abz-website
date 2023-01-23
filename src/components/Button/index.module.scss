@@ -2,6 +2,10 @@ button{
   width: 100px;
   height: 34px;
   border-radius: 80px;
-  background-color: #FFE302;
+  background-color: #F4E041;
   border: none;
+  &:hover{
+    background-color: #FFE302;
+    cursor: pointer;
+  }
 }

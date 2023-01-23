@@ -1,0 +1,33 @@
+.cardContainer {
+  .card {
+    width: 370px;
+    height: 254px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img{
+      border-radius: 50%;
+    }
+
+
+    .userName {
+      margin-top: 20px;
+    }
+
+    .userPosition {
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .userEmail {
+    }
+
+    .userPhone {
+    }
+
+  }
+}
+

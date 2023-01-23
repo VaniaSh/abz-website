@@ -1,9 +1,12 @@
 import React from 'react';
 import './index.module.scss'
 
-const Button = ({children}) => {
+const Button = ({onClick, disabled,children}) => {
     return (
-        <button>
+        <button
+            disabled={disabled}
+            onClick={onClick}
+        >
             {children}
         </button>
     );

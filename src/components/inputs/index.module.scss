@@ -1,0 +1,65 @@
+@mixin shrinkLabel {
+  top: -14px;
+  font-size: 12px;
+  color: #7E7E7E;
+  width: auto;
+  background-color: #F8F8F8;
+  text-align: center;
+
+}
+
+.container {
+  position: relative;
+  width: 100%;
+
+  .label {
+    width: auto;
+    font-weight: normal;
+    pointer-events: none;
+    position: absolute;
+    font-size: 16px;
+    line-height: 26px;
+    left: 1rem;
+    top: 1rem;
+    color: #7E7E7E;
+    transition: 300ms ease all;
+    text-align: center;
+
+    &.shrink {
+      @include shrinkLabel
+    }
+
+  }
+
+  .input {
+    width: 100%;
+    border: 1px solid #D0CFCF;
+    background-color: transparent;
+    color: black;
+    height: 54px;
+    outline: none;
+    line-height: 26px;
+    padding-left: 16px;
+    font-size: 16px;
+    position: relative;
+
+    &:read-only {
+      pointer-events: none;
+    }
+
+
+    &:focus ~ .label {
+      @include shrinkLabel
+    }
+  }
+
+}
+
+.error {
+  font-size: 0.8rem;
+  height: 1rem;
+
+}
+
+// style for upload
+

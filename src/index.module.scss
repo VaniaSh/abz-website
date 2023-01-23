@@ -1,0 +1,36 @@
+.prewie {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 140px;
+
+    .image {
+      height: auto;
+      align-items: center;
+      width: 100%;
+      max-width: 1170px;
+    }
+
+    .centeredText {
+      width: 380px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      p {
+        margin-bottom: 32px;
+      }
+    }
+  }
+}
+

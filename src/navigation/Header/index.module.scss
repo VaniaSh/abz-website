@@ -1,0 +1,15 @@
+.container {
+  padding: 17px 60px;
+  background-color: white;
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+}

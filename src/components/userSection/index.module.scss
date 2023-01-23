@@ -1,0 +1,27 @@
+.userSectionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+.title{
+  margin-bottom: 50px;
+}
+  .cardsContainer {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    gap: 29px;
+    margin-bottom: 50px;
+  }
+
+  @media (min-width: 600px) {
+    .cardsContainer {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 900px) {
+    .cardsContainer {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
