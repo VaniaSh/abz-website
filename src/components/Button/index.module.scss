@@ -1,11 +1,21 @@
-button{
+.button {
   width: 100px;
   height: 34px;
   border-radius: 80px;
   background-color: #F4E041;
   border: none;
-  &:hover{
+
+  &:hover {
     background-color: #FFE302;
     cursor: pointer;
   }
+}
+
+.disabled {
+  background-color: #7E7E7E;
+  color: white;
+  width: 100px;
+  height: 34px;
+  border-radius: 80px;
+  border: none;
 }

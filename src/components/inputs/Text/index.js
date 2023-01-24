@@ -4,14 +4,14 @@ import defaultStyle from '../index.module.scss';
 
 
 const TextInput = ({
-                  label,
-                  disabled,
-                  onChange,
-                  value,
-                  readOnly,
-                  error,
-                  required,
-              }) => {
+                       label,
+                       disabled,
+                       onChange,
+                       value,
+                       readOnly,
+                       error,
+                       required,
+                   }) => {
     return (
         <div className={defaultStyle.container}>
             <input
@@ -31,6 +31,8 @@ const TextInput = ({
                     {label}
                 </label>
             )}
+            <div className={defaultStyle.parError}>{error}</div>
+
         </div>
     );
 };

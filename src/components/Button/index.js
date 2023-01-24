@@ -1,15 +1,16 @@
 import React from 'react';
-import './index.module.scss'
+import styles from './index.module.scss'
 
-const Button = ({onClick, disabled,children}) => {
+const Button = ({onClick, disabled, children}) => {
     return (
         <button
-            disabled={disabled}
-            onClick={onClick}
-        >
+            className={`${disabled ? styles.disabled: styles.button}`}
+                disabled={disabled}
+                onClick={onClick}
+                >
             {children}
-        </button>
-    );
-};
+                </button>
+                );
+            };
 
 export default Button;

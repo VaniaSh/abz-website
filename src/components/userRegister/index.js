@@ -1,38 +1,107 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './index.module.scss'
 import TextInput from "../inputs/Text/index.js";
 import {Email} from "../inputs/Email/index.js";
 import Radio from "../inputs/Radio/index.js";
 import Upload from "../inputs/Upload/index.js";
+import Button from "../Button/index.js";
+import {Phone} from "../inputs/Phone/index.js";
 
-const UserRegister = () => {
-    const [userInfo, setUserInfo] = useState({name: '', email: '', phone: '', position: '', photo: ''})
-    console.log(userInfo, '<< user')
-
-    const handleChange = (key, value) => {
-        setUserInfo({...userInfo, [key]: value});
+const UserRegister = ({id}) => {
+    const [token, setToken] = useState('')
+    const [errors, setErrors] = useState({})
+    const [isDisabled, setIsDisabled] = useState(false)
+    const [positions, setPositions] = useState([])
+    const [userInfo, setUserInfo] = useState({
+        name: '',
+        email: '',
+        phone: '+380',
+        position_id: '',
+        photo: {file: new Blob(), name: ''}
+    })
+    const setError = name => er => {
+        setErrors({...errors, [name]: er})
+    }
+    useEffect(() => {
+        setIsDisabled(Object.values(errors).reduce((acc, cur) => acc || !!cur, false))
+    }, [errors])
+    const handleChange = (key1, value1) => {
+        setUserInfo({...userInfo, [key1]: value1});
     };
-    console.log(userInfo, '<< user')
+    useEffect(() => {
+        fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
+            .then(res => res.json())
+            .then(res => setToken(res.token))
+    }, [])
+    useEffect(() => {
+        fetch('https://frontend-test-assignment-api.abz.agency/api/v1/positions',)
+            .then(res => res.json())
+            .then(res => setPositions(res.positions))
+    }, [])
+
+    const valid = () => {
+        return (
+            isDisabled || (userInfo.name === '' ||
+            userInfo.phone.length !== 13 ||
+            userInfo.email === '' ||
+            userInfo.photo === undefined ||
+            userInfo.position_id === '')
+        )
+    }
+    const userAuth = () => {
+        let data = new FormData()
+        Object.entries(userInfo).forEach(([key, value]) => {
+            if (key === 'photo') {
+                return
+            }
+            data.append(key, value)
+        })
+
+        data.append('photo', userInfo.photo.file)
+        fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
+            method: 'POST',
+            headers: {'Token': token},
+            body: data,
+
+        }).then(res => res.json()).then(res => console.log(res))
+    }
     return (
-        <div className={styles.userRegisterContainer}>
+        <div id={id} className={styles.userRegisterContainer}>
             <h1 className={styles.title}>Working with POST request</h1>
             <div className={styles.formContainer}>
-                <TextInput label={'Your Name'} onChange={(val => handleChange('name', val))} value={userInfo.name}/>
-                <Email label={'Email'} onChange={(val => handleChange('email', val))} value={userInfo.email}/>
-                <TextInput label={'Phone'} onChange={(val => handleChange('phone', val))} value={userInfo.phone}/>
+                <TextInput
+                    label={'Your Name'}
+                    onChange={(val => handleChange('name', val))}
+                    value={userInfo.name}
+                />
+                <Email setError={setError('email')}
+                       error={errors['email']}
+                       label={'Email'}
+                       onChange={(val => handleChange('email', val))}
+                       value={userInfo.email}
+                />
+                <Phone setError={setError('phone')} error={errors['phone']} label={'Phone'}
+                       onChange={(val => handleChange('phone', val))}
+                       value={userInfo.phone}
+                />
                 <div className={styles.radioGroup}>
                     <p> Select your position</p>
-                    <Radio name={'position'} onChange={() => handleChange('position', '1')} value={userInfo.position}
-                           id={1} text='Frontend developer'/>
-                    <Radio name={'position'} onChange={() => handleChange('position', '2')} value={userInfo.position}
-                           id={2} text='Backend developer'/>
-                    <Radio name={'position'} onChange={() => handleChange('position', '3')} value={userInfo.position}
-                           id={3} text='Designer'/>
-                    <Radio name={'position'} onChange={() => handleChange('position', '4')} value={userInfo.position}
-                           id={4} text='QA'/>
-                </div>
-                <Upload/>
 
+                    {positions.map((el, key) => (
+                        <Radio
+                            name={'position'} onChange={() => handleChange('position_id', el.id)}
+                            value={userInfo.position}
+                            id={key} text={el.name}
+                        />
+                    ))}
+                </div>
+                <Upload onChange={(e) => setUserInfo({
+                    ...userInfo,
+                    'photo': {file: e.target.files[0], name: e.target.files[0].name}
+                })}/>
+                <Button disabled={valid()} onClick={userAuth
+
+                }>Sign up</Button>
             </div>
         </div>
     );

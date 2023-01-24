@@ -3,11 +3,12 @@ import Card from "../Card/index.js";
 import styles from './index.module.scss'
 import Button from "../Button/index.js";
 
-const UserSection = () => {
+const UserSection = ({id}) => {
     const [data, setData] = useState([]);
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=6', {method: 'GET'})
+        fetch(`https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`, {method: 'GET'})
             .then(res => res.json()).then(res => {
             if (res.success) {
                 setData(res.users)
@@ -16,19 +17,23 @@ const UserSection = () => {
             }
         })
 
-    }, [])
+    }, [page])
     return (
-        <div className={styles.userSectionContainer}>
+        <div id={id} className={styles.userSectionContainer}>
             <h1 className={styles.title}>Working with GET request</h1>
             <div className={styles.cardsContainer}>
                 {data && data.map((el, key) => (
                     <Card key={key} props={el}/>
                 ))}
             </div>
-            <Button>Show more</Button>
+            {
+                data.length < 6 ? (<Button onClick={() => setPage(1)}>To first page</Button>) : (
+                    <Button onClick={() => setPage((prevState) => prevState + 1)}>Show more</Button>
+                )
+            }
         </div>
 
-);
+    );
 };
 
 export default UserSection;
