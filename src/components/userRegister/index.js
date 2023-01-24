@@ -6,6 +6,7 @@ import Radio from "../inputs/Radio/index.js";
 import Upload from "../inputs/Upload/index.js";
 import Button from "../Button/index.js";
 import {Phone} from "../inputs/Phone/index.js";
+import {alert} from "../../helpers/alerts.js";
 
 const UserRegister = ({id}) => {
     const [token, setToken] = useState('')
@@ -42,10 +43,10 @@ const UserRegister = ({id}) => {
     const valid = () => {
         return (
             isDisabled || (userInfo.name === '' ||
-            userInfo.phone.length !== 13 ||
-            userInfo.email === '' ||
-            userInfo.photo === undefined ||
-            userInfo.position_id === '')
+                userInfo.phone.length !== 13 ||
+                userInfo.email === '' ||
+                userInfo.photo === undefined ||
+                userInfo.position_id === '')
         )
     }
     const userAuth = () => {
@@ -63,7 +64,16 @@ const UserRegister = ({id}) => {
             headers: {'Token': token},
             body: data,
 
-        }).then(res => res.json()).then(res => console.log(res))
+        }).then(res => res.json()).then((res) => {
+            if (res.success === false) {
+                alert.error({text: res.message})
+            } else {
+                alert.image({text: 'User successfully registered'})
+            }
+            console.log(res)
+        }).catch((er) => {
+            console.log(er)
+        })
     }
     return (
         <div id={id} className={styles.userRegisterContainer}>

@@ -10,9 +10,8 @@ import {Link} from "react-scroll";
 
 function App() {
     return (
-        <>
+        <div className={styles.main}>
             <Header/>
-
             <div className={styles.prewie}>
                 <div className={styles.imageContainer}>
                     <img className={styles.image} src={background} alt="background"/>
@@ -37,7 +36,7 @@ function App() {
                 <UserSection id={'get'}/>
                 <UserRegister id={'post'}/>
             </div>
-        </>
+        </div>
     );
 }
 
