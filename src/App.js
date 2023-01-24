@@ -1,17 +1,14 @@
 import React from "react";
-import Header from "./navigation/Header/index.js";
 import styles from './index.module.scss'
-import Button from "./components/Button/index.js";
-import UserSection from "./components/userSection/index.js";
-import UserRegister from "./components/userRegister/index.js";
 import {Link} from "react-scroll";
+import {Button, Header, UserRegister, UserSection} from "./components/index.js";
 
 
 function App() {
     return (
-        <div className={styles.main}>
+        <>
             <Header/>
-            <div className={styles.prewie}>
+            <div className={styles.preview}>
                 <div className={styles.imageContainer}>
                     <div className={styles.centeredText}>
                         <h1>Test assignment for front-end developer</h1>
@@ -35,7 +32,7 @@ function App() {
             </div>
             <UserSection id={'get'}/>
             <UserRegister id={'post'}/>
-        </div>
+        </>
     );
 }
 

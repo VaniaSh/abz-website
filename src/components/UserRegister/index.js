@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styles from './index.module.scss'
-import TextInput from "../inputs/Text/index.js";
-import {Email} from "../inputs/Email/index.js";
-import Radio from "../inputs/Radio/index.js";
-import Upload from "../inputs/Upload/index.js";
-import Button from "../Button/index.js";
-import {Phone} from "../inputs/Phone/index.js";
 import {alert} from "../../helpers/alerts.js";
+import {Email, Phone, TextInput, Upload, RadioButton} from "../inputs/index.js";
+import {Button} from "../index.js";
 
 const UserRegister = ({id}) => {
     const [token, setToken] = useState('')
@@ -99,7 +95,7 @@ const UserRegister = ({id}) => {
                     <p> Select your position</p>
 
                     {positions.map((el, key) => (
-                        <Radio
+                        <RadioButton
                             name={'position'} onChange={() => handleChange('position_id', el.id)}
                             value={userInfo.position}
                             id={key} text={el.name}
@@ -118,4 +114,4 @@ const UserRegister = ({id}) => {
     );
 };
 
-export default UserRegister;
+export {UserRegister};

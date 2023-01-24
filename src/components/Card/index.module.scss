@@ -91,13 +91,13 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .cardContainer {
     .card {
-      width: 282px;
+      width: 90%;
       margin: 0 auto;
     }
   }
 }
 
-@media (max -width: 768px) {
+@media (max-width: 768px) {
   .cardContainer {
     .card {
       width: 344px;

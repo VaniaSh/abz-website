@@ -1,14 +1,15 @@
 import React from 'react';
-import Button from "../../components/Button/index.js";
-import Logo from "../../components/Logo/index.js";
 import styles from './index.module.scss'
 import {Link} from "react-scroll";
+import {Button, Logo} from "../index.js";
 
 const Header = () => {
     return (
         <div className={styles.container}>
             <div className={styles.content}>
-                <Logo/>
+                <div style={{paddingRight: '15px'}}>
+                    <Logo/>
+                </div>
                 <div className={styles.buttons}>
                     <Link
                         activeClass="active"
@@ -34,4 +35,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export {Header} ;

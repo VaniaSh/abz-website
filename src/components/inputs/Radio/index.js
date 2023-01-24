@@ -19,4 +19,4 @@ const RadioButton = ({name, id, value, onChange, checked, text}) => {
     )
 }
 
-export default RadioButton
+export {RadioButton}
