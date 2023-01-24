@@ -45,7 +45,7 @@ const UserRegister = ({id}) => {
             isDisabled || (userInfo.name === '' ||
                 userInfo.phone.length !== 13 ||
                 userInfo.email === '' ||
-                userInfo.photo === undefined ||
+                userInfo.photo.file.size === 0 ||
                 userInfo.position_id === '')
         )
     }
@@ -57,7 +57,6 @@ const UserRegister = ({id}) => {
             }
             data.append(key, value)
         })
-
         data.append('photo', userInfo.photo.file)
         fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
             method: 'POST',
@@ -75,6 +74,8 @@ const UserRegister = ({id}) => {
             console.log(er)
         })
     }
+    console.log(userInfo, '<<info')
+
     return (
         <div id={id} className={styles.userRegisterContainer}>
             <h1 className={styles.title}>Working with POST request</h1>

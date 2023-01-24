@@ -44,6 +44,7 @@
           cursor: pointer;
           position: relative;
           display: inline-block;
+
           .tooltipText {
             visibility: hidden;
             top: 200%;
@@ -59,6 +60,7 @@
             position: absolute;
             z-index: 1;
           }
+
           &:hover {
             .tooltipText {
               visibility: visible;
@@ -77,37 +79,30 @@
 
   }
 }
-@media (min-width: 678px ) and (max-width: 1170px) {
-  .cardContainer{
-    .card{
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      height: 254px;
-      background-color: white;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: start;
-    }
-  }
-}
-@media (max-width: 678px ){
-  .cardContainer{
-    width: 100%;
-    .card{
-      width: 80%;
+@media (max-width: 1170px) {
+  .cardContainer {
+    .card {
+      width: 282px;
       margin: 0 auto;
-      padding: 10px;
-      box-sizing: border-box;
-      height: 254px;
-      background-color: white;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: start;
     }
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cardContainer {
+    .card {
+      width: 282px;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max -width: 768px) {
+  .cardContainer {
+    .card {
+      width: 344px;
+      margin: 0 auto;
+    }
+  }
+}
+
