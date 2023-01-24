@@ -8,6 +8,13 @@ export const AlertError = ({text}) => {
         title: 'Oops...',
         text: text,
     });
+};export const AlertSuccess = ({text}) => {
+    return Swal.fire({
+        icon: 'success',
+        title: 'Copied successful',
+        text: text,
+
+    });
 };
 export const ImageAlert = ({text}) => {
     return Swal.fire({
@@ -23,8 +30,10 @@ export const ImageAlert = ({text}) => {
 export const alert: {
    image: (data) => Promise<SweetAlertResult>;
     error: (data) => Promise<SweetAlertResult>;
+    success: (data) => Promise<SweetAlertResult>;
 } = {
     error: AlertError,
+    success: AlertSuccess,
     image: ImageAlert,
 
 };

@@ -16,26 +16,34 @@ const UserRegister = ({id}) => {
         position_id: '',
         photo: {file: new Blob(), name: ''}
     })
+    // check error onside inputs
     const setError = name => er => {
         setErrors({...errors, [name]: er})
     }
+    //check error while errors changing in state
     useEffect(() => {
         setIsDisabled(Object.values(errors).reduce((acc, cur) => acc || !!cur, false))
     }, [errors])
     const handleChange = (key1, value1) => {
         setUserInfo({...userInfo, [key1]: value1});
     };
+    // get token
+
     useEffect(() => {
         fetch('https://frontend-test-assignment-api.abz.agency/api/v1/token')
             .then(res => res.json())
             .then(res => setToken(res.token))
     }, [])
+
+    // get positions
+
     useEffect(() => {
         fetch('https://frontend-test-assignment-api.abz.agency/api/v1/positions',)
             .then(res => res.json())
             .then(res => setPositions(res.positions))
     }, [])
 
+    // validation for sign up button
     const valid = () => {
         return (
             isDisabled || (userInfo.name === '' ||
@@ -45,6 +53,7 @@ const UserRegister = ({id}) => {
                 userInfo.position_id === '')
         )
     }
+    // post request to create user
     const userAuth = () => {
         let data = new FormData()
         Object.entries(userInfo).forEach(([key, value]) => {
@@ -65,12 +74,10 @@ const UserRegister = ({id}) => {
             } else {
                 alert.image({text: 'User successfully registered'})
             }
-            console.log(res)
         }).catch((er) => {
             console.log(er)
         })
     }
-    console.log(userInfo, '<<info')
 
     return (
         <div id={id} className={styles.userRegisterContainer}>

@@ -1,7 +1,7 @@
 .cardContainer {
   .card {
     width: 370px;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
     height: 254px;
     background-color: white;
@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
+
 
     img {
       border-radius: 50%;
@@ -26,6 +27,10 @@
       .userName {
         margin-top: 20px;
         text-align: center;
+        width: inherit;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
       }
 
@@ -37,9 +42,21 @@
       }
 
       .userEmail {
+        display: flex;
+        .icon {
+          visibility: hidden;
+          margin-right: 5px;
+        }
+        &:hover {
+          .icon {
+            visibility: visible;
+          }
+        }
+
         /* Tooltip text */
         /* Show the tooltip text when you mouse over the tooltip container */
         .tooltip {
+          width: inherit;
           box-sizing: border-box;
           cursor: pointer;
           position: relative;
@@ -68,7 +85,7 @@
           }
         }
 
-        text-align: left;
+        text-align: center;
       }
 
       .userPhone {
