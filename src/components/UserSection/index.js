@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Card from "../Card/index.js";
 import styles from './index.module.scss'
-import Button from "../Button/index.js";
+import {Card, Button} from "../index.js";
+
 
 const UserSection = ({id}) => {
     const [data, setData] = useState([]);
@@ -36,4 +36,4 @@ const UserSection = ({id}) => {
     );
 };
 
-export default UserSection;
+export {UserSection};

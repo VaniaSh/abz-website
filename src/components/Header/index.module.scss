@@ -1,0 +1,36 @@
+.container {
+  box-sizing: border-box;
+  background-color: white;
+  height: 60px;
+  padding: 13px 60px;
+  .content {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container{
+    padding: 17px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container{
+    padding: 17px 32px;
+  }
+}
+@media (max-width: 360px) {
+  .container{
+    padding: 13px 0;
+  }
+}
+
+

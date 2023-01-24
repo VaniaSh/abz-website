@@ -1,21 +1,15 @@
 import React from "react";
-import Header from "./navigation/Header/index.js";
-import background from './assets/pexels-alexandr-podvalny-1227513.jpeg'
 import styles from './index.module.scss'
-import Button from "./components/Button/index.js";
-import UserSection from "./components/userSection/index.js";
-import UserRegister from "./components/userRegister/index.js";
 import {Link} from "react-scroll";
+import {Button, Header, UserRegister, UserSection} from "./components/index.js";
 
 
 function App() {
     return (
         <>
             <Header/>
-
-            <div className={styles.prewie}>
+            <div className={styles.preview}>
                 <div className={styles.imageContainer}>
-                    <img className={styles.image} src={background} alt="background"/>
                     <div className={styles.centeredText}>
                         <h1>Test assignment for front-end developer</h1>
                         <p>What defines a good front-end developer is one that has skilled knowledge of HTML, CSS, JS
@@ -34,9 +28,10 @@ function App() {
                         </Link>
                     </div>
                 </div>
-                <UserSection id={'get'}/>
-                <UserRegister id={'post'}/>
+
             </div>
+            <UserSection id={'get'}/>
+            <UserRegister id={'post'}/>
         </>
     );
 }

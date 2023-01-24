@@ -12,4 +12,4 @@ const Upload = ({onChange}) => {
     );
 };
 
-export default Upload;
+export {Upload};

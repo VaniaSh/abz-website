@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import styles from './index.module.scss'
-import TextInput from "../inputs/Text/index.js";
-import {Email} from "../inputs/Email/index.js";
-import Radio from "../inputs/Radio/index.js";
-import Upload from "../inputs/Upload/index.js";
-import Button from "../Button/index.js";
-import {Phone} from "../inputs/Phone/index.js";
+import {alert} from "../../helpers/alerts.js";
+import {Email, Phone, TextInput, Upload, RadioButton} from "../inputs/index.js";
+import {Button} from "../index.js";
 
 const UserRegister = ({id}) => {
     const [token, setToken] = useState('')
@@ -42,10 +39,10 @@ const UserRegister = ({id}) => {
     const valid = () => {
         return (
             isDisabled || (userInfo.name === '' ||
-            userInfo.phone.length !== 13 ||
-            userInfo.email === '' ||
-            userInfo.photo === undefined ||
-            userInfo.position_id === '')
+                userInfo.phone.length !== 13 ||
+                userInfo.email === '' ||
+                userInfo.photo.file.size === 0 ||
+                userInfo.position_id === '')
         )
     }
     const userAuth = () => {
@@ -56,15 +53,25 @@ const UserRegister = ({id}) => {
             }
             data.append(key, value)
         })
-
         data.append('photo', userInfo.photo.file)
         fetch('https://frontend-test-assignment-api.abz.agency/api/v1/users', {
             method: 'POST',
             headers: {'Token': token},
             body: data,
 
-        }).then(res => res.json()).then(res => console.log(res))
+        }).then(res => res.json()).then((res) => {
+            if (res.success === false) {
+                alert.error({text: res.message})
+            } else {
+                alert.image({text: 'User successfully registered'})
+            }
+            console.log(res)
+        }).catch((er) => {
+            console.log(er)
+        })
     }
+    console.log(userInfo, '<<info')
+
     return (
         <div id={id} className={styles.userRegisterContainer}>
             <h1 className={styles.title}>Working with POST request</h1>
@@ -88,7 +95,7 @@ const UserRegister = ({id}) => {
                     <p> Select your position</p>
 
                     {positions.map((el, key) => (
-                        <Radio
+                        <RadioButton
                             name={'position'} onChange={() => handleChange('position_id', el.id)}
                             value={userInfo.position}
                             id={key} text={el.name}
@@ -107,4 +114,4 @@ const UserRegister = ({id}) => {
     );
 };
 
-export default UserRegister;
+export {UserRegister};
